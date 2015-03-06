@@ -6,7 +6,6 @@ class RubyChip < Gosu::Window
   HEIGHT        = 32
   SCALE         = 10
   FULLSCREEN    = false
-  MEMORY_START  = 0x200
 
   def initialize
     load("programs/#{ARGV[0]}")
@@ -32,7 +31,6 @@ class RubyChip < Gosu::Window
   end
 
   def draw
-    # @vm[:graphics].each {|k,v| p v.join }
     Array(0..WIDTH).product(Array(0..HEIGHT)).each do |x, y|
       color = @vm.graphics.at_xy(x, y) == 1
       quad scale(x), scale(y), scale(x + 1), scale(y + 1), color: color
