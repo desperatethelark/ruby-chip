@@ -8,6 +8,6 @@ class OpFX55 < RubyChip::Instruction
   private
   
   def memory
-    (0..x).map { |v| [ i + v, vm[:register][i] ] }
+    (0..x).map { |v| [ i + v, vm[:register][v] ] }
   end
 end
