@@ -10,6 +10,10 @@ class RubyChip::VirtualMachine
     memory.bytes_from self[:program_counter]
   end
 
+  def opcode
+    "%04X" % current_instruction
+  end
+
   def [] component
     send(component).state
   end
