@@ -10,8 +10,8 @@ class OpFX33 < RubyChip::Instruction
   def memory
     { 
       (i    ) => (vx / 100),
-      (i + 1) => (vx / 10) % 10,
-      (i + 2) => (vx % 10)
+      (i + 1) => (vx /  10) % 10,
+      (i + 2) => (vx %  10)
     }
   end
 end

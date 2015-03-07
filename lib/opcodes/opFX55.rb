@@ -1,6 +1,6 @@
 class OpFX55 < RubyChip::Instruction
   def fill_memory_with_registers
-    update memory: memory, index: vm[:index] + i + 1
+    update memory: memory, index: i + x + 1
   end
 
   alias_method :execute, :fill_memory_with_registers

@@ -1,6 +1,6 @@
 class OpFX0A < RubyChip::Instruction
   def set_vx_to_key_press_if_any
-    if (keypress = (0..15).find { |i| vm[:keypad][i] != 0 })
+    if (keypress = (0...16).find { |key| vm[:keypad][key] != 0 })
       update_vx keypress
     else
       update program_counter: vm[:program_counter]

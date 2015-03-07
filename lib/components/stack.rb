@@ -1,5 +1,4 @@
 class RubyChip::Stack < RubyChip::Component
-
   def self.from_default
     RubyChip::Stack.new default_state
   end
@@ -11,5 +10,4 @@ class RubyChip::Stack < RubyChip::Component
   def [] key
     @state[key]
   end
-  
 end

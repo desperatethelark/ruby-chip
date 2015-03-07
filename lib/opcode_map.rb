@@ -1,6 +1,6 @@
 class RubyChip::OpcodeMap
-  def initialize opcodes
-    @map = opcodes.map { |code| [regex(code), obj(code)] }
+  def initialize opcodes, vm
+    @map = opcodes.map { |code| [regex(code), obj(code, vm)] }
   end
   
   def lookup opcode
@@ -15,7 +15,7 @@ class RubyChip::OpcodeMap
     /#{code.gsub(/[XYN]/, "(.)")}/
   end
 
-  def obj code
-    Object.const_get("Op#{code}").new
+  def obj code, vm
+    Object.const_get("Op#{code}").new vm
   end
 end

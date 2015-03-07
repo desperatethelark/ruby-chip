@@ -1,6 +1,10 @@
 class RubyChip::Instruction
   attr_accessor :vm
 
+  def initialize vm
+    @vm = vm
+  end
+
   private
 
   def default

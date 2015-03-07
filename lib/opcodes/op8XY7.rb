@@ -6,6 +6,6 @@ class Op8XY7 < RubyChip::Instruction
   alias_method :execute, :set_vx_to_vy_minus_vx_and_set_borrow_flag_on_vf
 
   def registers
-    { x => vy - vx, f => vy - vx > 0 }
+    { x => vy - vx, f => bitmap(vy - vx > 0) }
   end
 end
