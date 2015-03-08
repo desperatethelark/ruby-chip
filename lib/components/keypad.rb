@@ -1,13 +1,14 @@
-class RubyChip::Keypad < RubyChip::Component
-  def self.from_default
-    RubyChip::Keypad.new Array.new(16, 0)
+# hex keyboard 0-F
+class Keypad < RubyChip::Component
+  def self.default_state
+    Array.new(16, 0)
   end
 
-  def [] index
+  def [](index)
     @state[index]
   end
 
-  def []= index, value
+  def []=(index, value)
     @state[index] = value
   end
 end

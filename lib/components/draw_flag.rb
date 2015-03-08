@@ -1,5 +1,6 @@
-class RubyChip::DrawFlag < RubyChip::Component
-  def self.from_default
-    RubyChip::DrawFlag.new true
+# for determining whether or not a draw needs to occur
+class DrawFlag < RubyChip::Component
+  def self.default_state
+    true
   end
 end

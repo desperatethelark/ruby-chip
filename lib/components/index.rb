@@ -1,5 +1,6 @@
-class RubyChip::Index < RubyChip::Component
-  def self.from_default
-    RubyChip::Index.new 0
+# an index for the registers
+class Index < RubyChip::Component
+  def self.default_state
+    0
   end
 end

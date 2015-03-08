@@ -1,5 +1,6 @@
-class RubyChip::SoundTimer < RubyChip::Component
-  def self.from_default
-    RubyChip::SoundTimer.new 0
+# for sound effects
+class SoundTimer < RubyChip::Component
+  def self.default_state
+    0
   end
 end

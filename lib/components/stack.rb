@@ -1,13 +1,10 @@
-class RubyChip::Stack < RubyChip::Component
-  def self.from_default
-    RubyChip::Stack.new default_state
-  end
-
-  def self.default_state      
+# used to store return addresses when subroutines are called
+class Stack < RubyChip::Component
+  def self.default_state
     []
   end
 
-  def [] key
+  def [](key)
     @state[key]
   end
 end

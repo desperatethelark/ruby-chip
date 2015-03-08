@@ -1,5 +1,6 @@
-class RubyChip::DelayTimer < RubyChip::Component
-  def self.from_default
-    RubyChip::DelayTimer.new 0
+# for timing events in the game
+class DelayTimer < RubyChip::Component
+  def self.default_state
+    0
   end
 end
