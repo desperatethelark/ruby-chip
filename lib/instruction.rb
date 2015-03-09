@@ -17,10 +17,6 @@ module RubyChip
       { program_counter: @vm[:program_counter] + 2 }
     end
 
-    def update_vx(value)
-      update(register: { x => value })
-    end
-
     def conditional_instruction_skip(condition)
       @vm[:program_counter] + (condition ? 4 : 2)
     end
