@@ -2,8 +2,12 @@ require_relative './ruby_chip'
 
 # Gosu window for running the game loop and rendering
 class Window < Gosu::Window
+  WIDTH  = RubyChip::WIDTH  * RubyChip::SCALE
+  HEIGHT = RubyChip::HEIGHT * RubyChip::SCALE
+  FULLSCREEN = false
+
   def initialize
-    super scale(RubyChip::WIDTH), scale(RubyChip::HEIGHT), fullscreen = false
+    super WIDTH, HEIGHT, FULLSCREEN
     self.caption = "RubyChip - #{ARGV[0]}"
 
     load("programs/#{ARGV[0]}")
@@ -21,19 +25,25 @@ class Window < Gosu::Window
   end
 
   def draw
-    Array(0..RubyChip::WIDTH).product(Array(0..RubyChip::HEIGHT)).each do |x, y|
-      quad scale(x), scale(y), scale(x + 1), scale(y + 1), color(x, y)
-    end
+    scale(RubyChip::SCALE, RubyChip::SCALE) do
+      RubyChip::PIXELS.each do |x, y|
+        next if @vm.graphics.at_xy(x, y) == 0
 
+        draw_quad (x),      (y),      Gosu::Color::WHITE,
+                  (x),      (y + 1),  Gosu::Color::WHITE,
+                  (x + 1),  (y + 1),  Gosu::Color::WHITE,
+                  (x + 1),  (y),      Gosu::Color::WHITE
+      end
+    end
     @vm[:draw_flag] = false
   end
 
   # initialize helpers
 
   def load(program)
-    @vm = RubyChip::VirtualMachine.new yaml('config/components.yml')
-    @op_map = RubyChip::OpcodeMap.new yaml('config/opcodes.yml'), @vm
-    @key_map = RubyChip::KeypadMap.new yaml('config/keys.yml')
+    @vm       = RubyChip::VirtualMachine.new yaml('config/components.yml')
+    @op_map   = RubyChip::OpcodeMap.new yaml('config/opcodes.yml'), @vm
+    @key_map  = RubyChip::KeypadMap.new yaml('config/keys.yml')
 
     @vm.memory.load IO.binread(program).unpack('C*')
   end
@@ -58,20 +68,6 @@ class Window < Gosu::Window
 
   def update_timers
     [:delay_timer, :sound_timer].each { |t| @vm[t] = [@vm[t] - 1, 0].max }
-  end
-
-  # draw helpers
-
-  def quad(x1, y1, x2, y2, color)
-    draw_quad x1, y1, color, x1, y2, color, x2, y2, color, x2, y1, color
-  end
-
-  def color(x, y)
-    @vm.graphics.at_xy(x, y) == 1 ? Gosu::Color::WHITE : Gosu::Color::BLACK
-  end
-
-  def scale(n)
-    n * RubyChip::SCALE
   end
 end
 
