@@ -3,7 +3,7 @@ class Op8XY4 < RubyChip::Instruction
   def changes_from_execution
     {
       register: {
-        f => bitmap(vy + vy > 0xFF),
+        f => bitmap(vx + vy > 0xFF),
         x => vx + vy
       }
     }
