@@ -5,17 +5,17 @@ class Window < Gosu::Window
   WIDTH  = RubyChip::WIDTH  * RubyChip::SCALE
   HEIGHT = RubyChip::HEIGHT * RubyChip::SCALE
   FULLSCREEN = false
+  SPEED = 10
 
   def initialize
-    super WIDTH, HEIGHT, FULLSCREEN
+    super(WIDTH, HEIGHT, FULLSCREEN)
     self.caption = "RubyChip - #{ARGV[0]}"
-
+    @sound = Gosu::Song.new(self, 'sound.wav')
     load("programs/#{ARGV[0]}")
   end
 
   def update
-    update_user_input
-    update_vm_state
+    8.times { update_user_input; update_vm_state }
     check_for_sound_cue
     update_timers
   end
@@ -27,7 +27,7 @@ class Window < Gosu::Window
   def draw
     scale(RubyChip::SCALE, RubyChip::SCALE) do
       RubyChip::PIXELS.each do |x, y|
-        next if @vm.graphics.at_xy(x, y) == 0
+        next if @vm.graphics.at_xy(x, y).zero?
 
         draw_quad (x),      (y),      Gosu::Color::WHITE,
                   (x),      (y + 1),  Gosu::Color::WHITE,
@@ -63,7 +63,7 @@ class Window < Gosu::Window
   end
 
   def check_for_sound_cue
-    print "\a" if @vm[:sound_timer] == 1
+    @sound.play if @vm[:sound_timer] > 0
   end
 
   def update_timers
