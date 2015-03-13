@@ -9,11 +9,11 @@ class Graphics < RubyChip::Component
   end
 
   def at_xy(x, y)
-    @state[address_for x, y]
+    @state[address_for x, y] || 0
   end
 
   def at_address(address)
-    @state[address]
+    @state[address] || 0
   end
 
   def address_for(x, y)
