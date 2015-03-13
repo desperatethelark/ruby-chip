@@ -1,9 +1,9 @@
 # await key press and store in vx
 class OpFX0A < RubyChip::Instruction
   def changes_from_execution
-    if (keypress = (0...16).find { |key| vm[:keypad][key] != 0 })
+    if vm[:keypad].index(1)
       {
-        register: { x => keypress }
+        register: { x => vm[:keypad].index(1) }
       }
     else
       {
