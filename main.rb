@@ -55,7 +55,7 @@ class Window < Gosu::Window
   # update helpers
 
   def update_user_input
-    @key_map.map.each { |id, i| @vm.keypad[i] = button_down?(id) ? 1 : 0 }
+    @key_map.map.each { |id, i| @vm[:keypad][i] = button_down?(id) ? 1 : 0 }
   end
 
   def update_vm_state
