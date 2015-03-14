@@ -6,10 +6,6 @@ class Memory < RubyChip::Component
     Hash[(0...4096).map { |n| [n, fonts[n] || 0] }]
   end
 
-  def [](key)
-    @state[key]
-  end
-
   def bytes_from(state)
     @state[state] << 8 | @state[state + 1]
   end
