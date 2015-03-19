@@ -12,8 +12,6 @@ describe 'Opcode' do
   end
 
   describe Op00E0 do
-    let(:op) { Op00E0.new(@vm).changes_from_execution }
-
     it 'triggers a redraw' do
       expect(op[:draw_flag]).to eq(true)
     end
@@ -24,8 +22,6 @@ describe 'Opcode' do
   end
 
   describe Op00EE do
-    let(:op) { Op00EE.new(@vm).changes_from_execution }
-
     before :each do
       @vm[:stack] = [50, 100]
       @vm[:program_counter] = 42
@@ -41,7 +37,6 @@ describe 'Opcode' do
   end
 
   describe Op1NNN do
-    let(:op) { Op1NNN.new(@vm).changes_from_execution }
 
     it 'sets the program counter to the address NNN' do
       @vm.stub(:current_instruction) { 0x1999 }
@@ -50,7 +45,6 @@ describe 'Opcode' do
   end
 
   describe Op2NNN do
-    let(:op) { Op2NNN.new(@vm).changes_from_execution }
 
     before :each do
       @vm[:stack] = [17]
@@ -68,7 +62,6 @@ describe 'Opcode' do
   end
 
   describe Op3XNN do
-    let(:op) { Op3XNN.new(@vm).changes_from_execution }
 
     before :each do
       @vm[:program_counter] = 0
@@ -91,7 +84,6 @@ describe 'Opcode' do
   end
 
   describe Op4XNN do
-    let(:op) { Op4XNN.new(@vm).changes_from_execution }
 
     before :each do
       @vm[:program_counter] = 0
