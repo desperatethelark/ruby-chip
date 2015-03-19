@@ -4,7 +4,7 @@ class OpFX33 < RubyChip::Instruction
     {
       memory: {
         (i)     => (vx / 100),
-        (i + 1) => (vx /  10) % 10,
+        (i + 1) => (vx % 100) / 10,
         (i + 2) => (vx %  10)
       }
     }

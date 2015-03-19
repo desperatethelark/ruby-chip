@@ -3,7 +3,7 @@ class Op8XYE < RubyChip::Instruction
   def changes_from_execution
     {
       register: {
-        f => vx >> 7,
+        f => vx & 0x80,
         x => vx << 1
       }
     }

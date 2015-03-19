@@ -274,16 +274,16 @@ describe 'Opcode' do
       expect(op[:register][0]).to eq(0xF0)
     end
 
-    context 'when vy - vx is negative' do
+    context 'when vy < vx ' do
       it 'sets vf to 0' do
         @vm[:register] = { 0 => 0x01, 1 => 0x00 }
         expect(op[:register][15]).to eq(0)
       end
     end
 
-    context 'when vy - vx is nonnegative' do
+    context 'when vy > vx' do
       it 'sets vf to 1' do
-        @vm[:register] = { 0 => 0x01, 1 => 0x01 }
+        @vm[:register] = { 0 => 0x01, 1 => 0x02 }
         expect(op[:register][15]).to eq(1)
       end
     end
@@ -434,14 +434,14 @@ describe 'Opcode' do
 
     context 'when there is a key being pressed' do
       it 'stores the keypress in VX' do
-        @vm[:keypad] = [0,0,1,0]
+        @vm[:keypad] = [0, 0, 1, 0]
         expect(op[:register][0]).to eq(@vm[:keypad].index(1))
       end
     end
 
     context 'when there is no key being pressed' do
       it 'sets the program_counter to itself' do
-        @vm[:keypad] = [0,0,0,0]
+        @vm[:keypad] = [0, 0, 0, 0]
         expect(op[:program_counter]).to eq(@vm[:program_counter])
       end
     end
