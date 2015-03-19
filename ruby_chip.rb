@@ -5,4 +5,3 @@ module RubyChip
   SCALE   = 10
   PIXELS  = Array(0..WIDTH).product Array(0..HEIGHT)
 end
-

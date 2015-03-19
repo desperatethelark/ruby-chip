@@ -37,7 +37,6 @@ describe 'Opcode' do
   end
 
   describe Op1NNN do
-
     it 'sets the program counter to the address NNN' do
       @vm.stub(:current_instruction) { 0x1999 }
       expect(op[:program_counter]).to eq(0x999)
@@ -45,7 +44,6 @@ describe 'Opcode' do
   end
 
   describe Op2NNN do
-
     before :each do
       @vm[:stack] = [17]
       @vm[:program_counter] = 42
@@ -62,7 +60,6 @@ describe 'Opcode' do
   end
 
   describe Op3XNN do
-
     before :each do
       @vm[:program_counter] = 0
       @vm.stub(:current_instruction) { 0x3255 }
@@ -84,7 +81,6 @@ describe 'Opcode' do
   end
 
   describe Op4XNN do
-
     before :each do
       @vm[:program_counter] = 0
       @vm.stub(:current_instruction) { 0x4255 }
