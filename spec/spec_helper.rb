@@ -1,4 +1,6 @@
-require_relative '../ruby_chip'
+require_relative './ruby_chip.rb'
+Dir['lib/*.rb'].each { |rb| require_relative rb }
+Dir['lib/*/*.rb'].each { |rb| require_relative rb }
 
 RSpec.configure do |config|
   config.color = true
