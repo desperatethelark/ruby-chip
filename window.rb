@@ -54,7 +54,7 @@ class Window < Gosu::Window
 
   def update_user_input
     close if button_down?(Gosu::KbEscape)
-    @key_map.map.each { |id, i| @vm[:keypad][i] = button_down?(id) ? 1 : 0 }
+    @key_map.keys.each { |id, i| @vm[:keypad][i] = button_down?(id) ? 1 : 0 }
   end
 
   def update_vm_state
